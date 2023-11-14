@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Mary"
+    },
+    {
+      "id": 2,
+      "name": "Jill"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server 1",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "json-server 2",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "json-server 3",
+      "userId": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "body": "Jill's comment",
+      "postId": 1,
+      "userId": 2
+    },
+    {
+      "body": "每天都好想睡覺",
+      "userId": 2,
+      "postId": "2",
+      "id": 3
+    }
+  ]
+}

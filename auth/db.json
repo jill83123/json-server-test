@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "email": "user@example.com",
+      "password": "$2a$10$isUk8aMuRqeajVkRP6tB9O5xR.7C5ER/txVAYNQ9r2cMiG4JTFJne",
+      "userName": "Jill",
+      "id": 1
+    }
+  ],
+  "posts": [
+    {
+      "content": "今天很適合冬眠",
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "content": "提拉米蘇好好吃",
+      "userId": "1",
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="https://github.com/jeremyben/json-server-auth" target="_blank">json-server-auth</a>
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+      let token = '';
+      let userId = '';
+
+      // 註冊
+      function signUp() {
+        axios
+          .post('http://localhost:3000/signup', {
+            email: 'user@example.com',
+            password: 'example123',
+            userName: 'Jill',
+          })
+          .then((res) => {
+            token = res.data.accessToken;
+            console.log(token);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // 登入
+      function login() {
+        axios
+          .post('http://localhost:3000/login', {
+            email: 'user@example.com',
+            password: 'example456',
+          })
+          .then((res) => {
+            token = res.data.accessToken;
+            userId = res.data.user.id;
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // 修改密碼
+      function updatePassword() {
+        axios
+          .patch(
+            'http://localhost:3000/600/users/1',
+            {
+              password: 'example123',
+            },
+            {
+              headers: {
+                authorization: `Bearer ${token}`, // Bearer -> 加密前必須帶
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // 新增貼文
+      function addPost() {
+        axios
+          .post(
+            'http://localhost:3000/600/posts',
+            {
+              content: '今天很適合冬眠',
+              userId: userId,
+            },
+            {
+              headers: {
+                authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((res) => {
+            token = res.data.accessToken;
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // 新增貼文 寫法二
+      function addPost2() {
+        axios
+          .post(
+            `http://localhost:3000/600/users/${userId}/posts`,
+            {
+              content: '提拉米蘇好好吃',
+            },
+            {
+              headers: {
+                authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((res) => {
+            token = res.data.accessToken;
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    </script>
+  </body>
+</html>
